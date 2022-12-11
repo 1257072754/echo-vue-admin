@@ -1,6 +1,8 @@
 import { defineConfig, loadEnv } from 'vite'
 import type { ConfigEnv } from 'vite'
 import { resolve } from 'path'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 import vue from '@vitejs/plugin-vue'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { viteMockServe } from 'vite-plugin-mock'
@@ -36,7 +38,14 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         reactivityTransform: true,
       }),
       AutoImport({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [
+          ElementPlusResolver(),
+          // Auto import icon components
+          // 自动导入图标组件
+          IconsResolver({
+            prefix: 'Icon',
+          }),
+        ],
         // 自定引入 Vue VueRouter API,如果还需要其他的可以自行引入
         imports: ['vue', 'vue-router'],
         // 调整自动引入的文件位置
@@ -50,8 +59,17 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         },
       }),
       Components({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [
+          ElementPlusResolver(), // Auto register icon components
+          // 自动注册图标组件
+          IconsResolver({
+            enabledCollections: ['ep'],
+          }),
+        ],
         dts: 'src/type/components.d.ts',
+      }),
+      Icons({
+        autoInstall: true,
       }),
       // 配置mock
       viteMockServe({
@@ -59,5 +77,13 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         localEnabled: true,
       }),
     ],
+    css: {
+      preprocessorOptions: {
+        //define global scss variable
+        scss: {
+          additionalData: `@import "./src/assets/scss/global.scss";`,
+        },
+      },
+    },
   }
 })

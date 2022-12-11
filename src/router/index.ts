@@ -1,36 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-// 配置路由信息
-const routes: RouteRecordRaw[] = [
+// 公开路由表
+const publicRoutes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/main',
+    redirect: '/login',
   },
   {
     name: 'login',
     path: '/login',
     component: () => import('/@/views/login/index.vue'),
   },
-  {
-    name: 'store',
-    path: '/store',
-    component: () => import('/@/views/store/index.vue'),
-  },
-  {
-    name: 'main',
-    path: '/main',
-    component: () => import('/@/views/main/MainPage.vue'),
-    redirect: '/main/dashboard/workplace',
-  },
-  {
-    name: 'request',
-    path: '/request',
-    component: () => import('/@/views/request/index.vue'),
-  },
 ]
 
 const router = createRouter({
-  routes,
+  routes: publicRoutes,
   history: createWebHistory(),
 })
 

@@ -1,15 +1,44 @@
 <template>
-  <div class="login h-screen w-screen">
-    <el-row class="h-full">
-      <el-col :span="12" class="h-full"><div>装饰</div></el-col>
-      <el-col :span="12" class="h-full"
-        ><div class="login-wrap h-full flex justify-center items-center">
-          <LoginCard /></div
-      ></el-col>
-    </el-row>
+  <div class="login-container">
+    <el-form class="login-form">
+      <div class="title-container">
+        <h3 class="title">用户登录</h3>
+      </div>
+      <el-form-item>
+        <span class="svg-container">
+          <el-icon><Avatar /></el-icon>
+        </span>
+        <el-input
+          v-model="userName"
+          clearable
+          placeholder="请输入账号"
+        ></el-input>
+      </el-form-item>
+      <el-form-item>
+        <span class="svg-container">
+          <el-icon><Avatar /></el-icon>
+        </span>
+        <el-input
+          v-model="password"
+          show-password
+          clearable
+          placeholder="请输入密码"
+        ></el-input>
+      </el-form-item>
+      <el-button style="width: 100%; margin-bottom: 30px" type="primary"
+        >登录
+      </el-button>
+    </el-form>
   </div>
 </template>
 <script setup lang="ts">
-import LoginCard from './components/LoginCard.vue'
+import { Avatar } from '@element-plus/icons-vue'
+import { ref } from 'vue'
+
+const userName = ref('')
+const password = ref('')
 </script>
-<style scoped></style>
+<style scoped lang="scss">
+.login-container {
+}
+</style>
