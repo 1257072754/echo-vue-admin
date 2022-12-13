@@ -36,6 +36,7 @@
     "gsap": "^3.9.1",
     "lodash": "^4.17.21",
     "pinia": "^2.0.11",
+    "svg-sprite-loader": "^6.0.11",
     "vue": "^3.2.25",
     "vue-router": "^4.0.13"
   },
@@ -51,12 +52,14 @@
     "@vue/eslint-config-typescript": "^10.0.0",
     "autoprefixer": "^10.4.2",
     "commitizen": "^4.2.4",
+    "commitlint-config-cz": "^0.13.3",
     "cz-conventional-changelog": "^3.3.0",
     "cz-customizable": "^7.0.0",
     "eslint": "^8.10.0",
     "eslint-define-config": "^1.2.5",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.5.0",
+    "fast-glob": "^3.2.12",
     "husky": "^7.0.0",
     "lint-staged": "^12.3.4",
     "mockjs": "^1.1.0",
@@ -72,11 +75,14 @@
     "unplugin-vue-components": "^0.17.21",
     "vite": "^2.8.0",
     "vite-plugin-mock": "^2.9.6",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vite-svg-loader": "^3.6.0",
     "vue-tsc": "^0.29.8"
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-customizable"
+      "path": "./node_modules/cz-customizable",
+      "czConfig": "./.cz-config.js"
     }
   },
   "engines": {

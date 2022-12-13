@@ -8,6 +8,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { viteMockServe } from 'vite-plugin-mock'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import svgLoader from 'vite-svg-loader'
 
 export default defineConfig(({ mode }: ConfigEnv) => {
   const env = loadEnv(mode, process.cwd())
@@ -40,7 +41,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       AutoImport({
         resolvers: [
           ElementPlusResolver(),
-          // Auto import icon components
+          // Auto import icons components
           // 自动导入图标组件
           IconsResolver({
             prefix: 'Icon',
@@ -60,7 +61,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       }),
       Components({
         resolvers: [
-          ElementPlusResolver(), // Auto register icon components
+          ElementPlusResolver(), // Auto register icons components
           // 自动注册图标组件
           IconsResolver({
             enabledCollections: ['ep'],
@@ -75,6 +76,27 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       viteMockServe({
         mockPath: '/mock',
         localEnabled: true,
+      }),
+      svgLoader({
+        svgoConfig: {
+          plugins: [
+            {
+              name: 'cleanupIDs',
+              params: {
+                prefix: {
+                  // 避免不同 svg 内部的 filter id 相同导致样式错乱
+                  // https://github.com/svg/svgo/issues/674#issuecomment-328774019
+                  toString() {
+                    let count: number = this.count ?? 0
+                    count++
+                    this.count = count
+                    return `svg-random-${count.toString(36)}-`
+                  },
+                } as string,
+              },
+            },
+          ],
+        },
       }),
     ],
     css: {

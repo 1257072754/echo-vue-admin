@@ -4,18 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    DDay: typeof import('./../components/three-line-pic/src/DDay.vue')['default']
-    DMonth: typeof import('./../components/three-line-pic/src/DMonth.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElForm: typeof import('element-plus/es')['ElForm']
-    ElFormItem: typeof import('element-plus/es')['ElFormItem']
-    ElIcon: typeof import('element-plus/es')['ElIcon']
-    ElInput: typeof import('element-plus/es')['ElInput']
-    JDay: typeof import('./../components/three-line-pic/src/JDay.vue')['default']
-    Test: typeof import('./../components/Test.vue')['default']
-    YwzChart: typeof import('./../components/three-line-pic/src/YwzChart.vue')['default']
-    YwzForm: typeof import('./../components/ywz-form/src/YwzForm.vue')['default']
-    YwzTable: typeof import('./../components/ywz-table/src/YwzTable.vue')['default']
+    SvgIcon: typeof import('./../components/SvgIcon/index.vue')['default']
   }
 }
 
