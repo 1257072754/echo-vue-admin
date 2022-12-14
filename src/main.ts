@@ -11,11 +11,11 @@ import 'animate.css'
 // 单独引入 ElMessage 和 ElMessageBox 的样式
 import 'element-plus/theme-chalk/el-message.css'
 import 'element-plus/theme-chalk/el-message-box.css'
-import SvgIcon from '/@/components/SvgIcon/index.vue'
+// 引入svg-icon
+import svgIcon from '/@/components/SvgIcon'
 
 const app = createApp(App).use(store)
 
 // 获取基础数据
 await useUserStore().getData()
-app.component('SvgIcon', SvgIcon)
-app.use(router).mount('#app')
+app.use(router).use(svgIcon).mount('#app')

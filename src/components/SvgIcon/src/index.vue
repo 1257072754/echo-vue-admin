@@ -2,7 +2,7 @@
 import type { Component } from 'vue'
 import { computed, getCurrentInstance, nextTick, ref, watch } from 'vue'
 
-const modules = import.meta.globEager('@/assets/svg/*.svg', {
+const allModules = import.meta.globEager('/src/assets/svg/*.svg', {
   as: 'component',
 })
 
@@ -12,14 +12,14 @@ const instance = getCurrentInstance()
 const svgRef = ref()
 
 const currentComponent = computed<Component | undefined>(() => {
-  const fileName = '/' + props.name + '.svg'
-  for (const path in modules) {
-    const mod = modules[path]
+  const fileName = props.name + '.svg'
+  for (const path in allModules) {
+    const mod = allModules[path]
     if (path.endsWith(fileName)) {
       return mod as Component
     }
   }
-  console.log('not found svg file:' + fileName)
+  console.log('not found svg file = ' + fileName)
   return undefined
 })
 

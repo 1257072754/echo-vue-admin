@@ -36,7 +36,6 @@
     "gsap": "^3.9.1",
     "lodash": "^4.17.21",
     "pinia": "^2.0.11",
-    "svg-sprite-loader": "^6.0.11",
     "vue": "^3.2.25",
     "vue-router": "^4.0.13"
   },
@@ -75,7 +74,6 @@
     "unplugin-vue-components": "^0.17.21",
     "vite": "^2.8.0",
     "vite-plugin-mock": "^2.9.6",
-    "vite-plugin-svg-icons": "^2.0.1",
     "vite-svg-loader": "^3.6.0",
     "vue-tsc": "^0.29.8"
   },

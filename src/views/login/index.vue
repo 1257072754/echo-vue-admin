@@ -16,7 +16,7 @@
       </el-form-item>
       <el-form-item>
         <span class="svg-container">
-          <SvgIcon icon="user"></SvgIcon>
+          <SvgIcon style="width: 20px; height: 20px" name="user"></SvgIcon>
         </span>
         <el-input
           v-model="password"
@@ -37,7 +37,6 @@
 <script setup lang="ts">
 import { Avatar, View } from '@element-plus/icons-vue'
 import { ref } from 'vue'
-import SvgIcon from '/@/components/SvgIcon/index.vue'
 
 const userName = ref('')
 const password = ref('')
@@ -88,7 +87,7 @@ $cursor: #fff;
   }
 
   .svg-container {
-    padding: 6px 5px 6px 15px;
+    padding: 9px 5px 3px 15px;
     color: $dark_gray;
     vertical-align: middle;
     display: inline-block;
