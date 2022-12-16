@@ -1,5 +1,6 @@
 import { MockMethod } from 'vite-plugin-mock'
 import { userList, permissionList, roleList } from './data'
+
 export const listToTree = (array: any[]) => {
   const arr = JSON.parse(JSON.stringify(array))
   const result = []
@@ -27,9 +28,8 @@ const mockList: MockMethod[] = [
     url: '/mock/login',
     method: 'post', // 请求方式
     statusCode: 200, // 返回的http状态码
-    response: opt => {
+    response: () => {
       console.log(opt)
-
       return {
         // 返回的结果集
         statusCode: 200,

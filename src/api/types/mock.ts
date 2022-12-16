@@ -31,3 +31,7 @@ export interface IUserDetail extends IUserList {
   // 权限列表
   permissionList: PermissionList[]
 }
+export interface ILogin {
+  username: string
+  password: string
+}

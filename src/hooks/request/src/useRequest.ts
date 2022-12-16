@@ -2,7 +2,8 @@ import { ref, computed } from 'vue'
 import { delay, debounce, throttle } from 'lodash'
 import type { IUseRequestOption, IUseRequestRequest } from './../type'
 // 引入返回值类型
-import type { YWZResponse } from '/@/service/index'
+import type { IResponse } from '/@/service'
+
 const defaultOption: IUseRequestOption = {
   // 是否开启防抖 时长
   debounce: false,
@@ -21,7 +22,7 @@ const defaultOption: IUseRequestOption = {
 const useRequest = <
   ParamType = any,
   PromiseRequestType = any,
-  DataType = YWZResponse<PromiseRequestType>,
+  DataType = IResponse<PromiseRequestType>,
 >(
   PromiseRequest: (p: ParamType) => Promise<DataType>,
   params: ParamType,
@@ -35,7 +36,7 @@ const useRequest = <
   // 警告
   if (option.throttle && option.debounce) {
     console.warn(
-      '[ywz warn]: useRequest的配置项中的throttle和debounce均为true，请选择一个，否则这样默认使用防抖',
+      '[warn]: useRequest的配置项中的throttle和debounce均为true，请选择一个，否则这样默认使用防抖',
     )
   }
 

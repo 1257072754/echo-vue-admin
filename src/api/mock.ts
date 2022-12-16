@@ -1,10 +1,12 @@
 import request from '/@/service'
 import type {
+  ILogin,
   IPermissionList,
   IRoleList,
   IUserDetail,
   IUserList,
 } from './types/mock'
+
 export const getUserList = () => {
   return request<any, IUserList[]>({
     url: '/mock/getUserList',
@@ -27,6 +29,13 @@ export const getUserDetail = (data: { id: any }) => {
   return request<any, IUserDetail>({
     url: '/mock/getUserDetail',
     method: 'get',
+    data,
+  })
+}
+export const login = (data: ILogin) => {
+  return request<any, any>({
+    url: 'login',
+    method: 'post',
     data,
   })
 }

@@ -1,45 +1,85 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form">
+    <el-form
+      ref="userFromRef"
+      class="login-form"
+      :rules="rules"
+      :model="userFrom"
+    >
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
-      <el-form-item>
-        <span class="svg-container">
-          <el-icon><Avatar /></el-icon>
-        </span>
-        <el-input
-          v-model="userName"
-          clearable
-          placeholder="请输入账号"
-        ></el-input>
-      </el-form-item>
-      <el-form-item>
+      <el-form-item prop="username">
         <span class="svg-container">
           <SvgIcon style="width: 20px; height: 20px" name="user"></SvgIcon>
         </span>
         <el-input
-          v-model="password"
-          show-password
-          clearable
+          v-model="userFrom.username"
+          placeholder="请输入账号"
+        ></el-input>
+      </el-form-item>
+      <el-form-item prop="password">
+        <span class="svg-container">
+          <SvgIcon style="width: 20px; height: 20px" name="user"></SvgIcon>
+        </span>
+        <el-input
+          v-model="userFrom.password"
+          :type="isShowPas ? 'password' : ''"
           placeholder="请输入密码"
         ></el-input>
         <span class="show-pws">
-          <el-icon><View /></el-icon>
+          <el-icon @click="setShowPws"
+            ><View v-if="isShowPas" /><Hide v-else
+          /></el-icon>
         </span>
       </el-form-item>
-      <el-button style="width: 100%; margin-bottom: 30px" type="primary"
+      <el-button
+        style="width: 100%; margin-bottom: 30px"
+        type="primary"
+        @click="handleLogin"
         >登录
       </el-button>
     </el-form>
   </div>
 </template>
 <script setup lang="ts">
-import { Avatar, View } from '@element-plus/icons-vue'
-import { ref } from 'vue'
+import { Hide, View } from '@element-plus/icons-vue'
+import { reactive, ref } from 'vue'
+import { ILogin } from '/@/api/types/mock'
+import { login } from '/@/api/mock'
 
-const userName = ref('')
-const password = ref('')
+const isShowPas = ref(true)
+const userFromRef = ref()
+const userFrom = reactive<ILogin>({
+  username: 'admin',
+  password: '123456',
+})
+//验证规则
+const rules = reactive({
+  username: [
+    { required: true, message: 'Please input username', trigger: 'blur' },
+    { min: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
+  ],
+  password: [
+    { required: true, message: 'Please input password', trigger: 'blur' },
+    { min: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
+  ],
+})
+//登录
+const handleLogin = () => {
+  const validate = userFromRef.value.validate()
+  if (validate) {
+    login(userFrom).then(result => {
+      if (result.statusCode === 200) {
+        console.log('result ===', result)
+      }
+    })
+  }
+}
+//显示密码
+const setShowPws = () => {
+  isShowPas.value = !isShowPas.value
+}
 </script>
 <style scoped lang="scss">
 $bg: #2d3a4b;
