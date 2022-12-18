@@ -2,11 +2,15 @@ import Request from './request'
 import { AxiosResponse } from 'axios'
 
 import type { RequestConfig } from './request/types'
+import { LocalCache } from '/@/utils/cache'
+import { TOKEN } from '/@/constant'
+
+type Recordable<T = any> = Record<string, T>
 
 export interface IResponse<T> {
   statusCode: number
   desc: string
-  result: T
+  data: T
 }
 
 // 重写返回类型
@@ -19,7 +23,10 @@ const request = new Request({
   timeout: 1000 * 60 * 5,
   interceptors: {
     // 请求拦截器
-    requestInterceptors: config => config,
+    requestInterceptors: config => {
+      ;(config as Recordable).headers['Token'] = LocalCache.getItem(TOKEN) | ''
+      return config
+    },
     // 响应拦截器
     responseInterceptors: (result: AxiosResponse) => {
       return result

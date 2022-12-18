@@ -46,10 +46,11 @@
 import { Hide, View } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
 import { ILogin } from '/@/api/types/mock'
-import { login } from '/@/api/mock'
+import { useUserStore } from '/@/store/modules/login'
 
 const isShowPas = ref(true)
 const userFromRef = ref()
+const userStore = useUserStore()
 const userFrom = reactive<ILogin>({
   username: 'admin',
   password: '123456',
@@ -69,11 +70,7 @@ const rules = reactive({
 const handleLogin = () => {
   const validate = userFromRef.value.validate()
   if (validate) {
-    login(userFrom).then(result => {
-      if (result.statusCode === 200) {
-        console.log('result ===', result)
-      }
-    })
+    userStore.userLogin(userFrom)
   }
 }
 //显示密码
