@@ -3,6 +3,7 @@ import { LocalCache } from '/@/utils/cache'
 import { TOKEN } from '/@/constant'
 import { store } from '/@/store'
 import { login } from '/@/api/mock'
+import router from '/@/router'
 
 interface GlobalState {
   token: string
@@ -28,6 +29,7 @@ export const useUserStore = defineStore({
           console.log('result ===', result)
           this.token = data.userInfo.token
           LocalCache.setItem(TOKEN, data.userInfo.token)
+          router.push('/')
         }
       })
     },

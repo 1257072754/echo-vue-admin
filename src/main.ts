@@ -12,6 +12,7 @@ import 'element-plus/theme-chalk/el-message.css'
 import 'element-plus/theme-chalk/el-message-box.css'
 // 引入svg-icon
 import svgIcon from '/@/components/SvgIcon'
+import './permission'
 
 const app = createApp(App)
 setupStore(app)

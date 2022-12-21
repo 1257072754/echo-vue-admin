@@ -100,13 +100,6 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         },
       }),
     ],
-    css: {
-      preprocessorOptions: {
-        //define global scss variable
-        scss: {
-          additionalData: `@import "./src/assets/scss/global.scss";`,
-        },
-      },
-    },
+    css: {},
   }
 })
