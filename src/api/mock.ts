@@ -39,3 +39,10 @@ export const login = (data: ILogin) => {
     data,
   })
 }
+export const logout = (data: ILogin) => {
+  return request<any, any>({
+    url: 'login',
+    method: 'post',
+    data,
+  })
+}

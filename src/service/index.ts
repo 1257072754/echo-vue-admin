@@ -1,9 +1,11 @@
 import Request from './request'
-import { AxiosResponse } from 'axios'
 
 import type { RequestConfig } from './request/types'
 import { LocalCache } from '/@/utils/cache'
 import { TOKEN } from '/@/constant'
+import { isCheckTimeout } from '/@/utils/auth'
+import router from '/@/router'
+import { ElMessage } from 'element-plus'
 
 type Recordable<T = any> = Record<string, T>
 
@@ -23,13 +25,26 @@ const request = new Request({
   timeout: 1000 * 60 * 5,
   interceptors: {
     // 请求拦截器
-    requestInterceptors: config => {
-      ;(config as Recordable).headers['Token'] = LocalCache.getItem(TOKEN) | ''
+    requestInterceptors: (config: any) => {
+      if (LocalCache.getItem(TOKEN) && isCheckTimeout()) {
+        //token过期，退出
+        LocalCache.removeItem(TOKEN)
+        router.push('/login')
+        return Promise.reject(new Error('token 失效'))
+      }
+
+      ;(config as Recordable).headers['Token'] = LocalCache.getItem(TOKEN) || ''
       return config
     },
     // 响应拦截器
-    responseInterceptors: (result: AxiosResponse) => {
-      return result
+    responseInterceptors: (result: any) => {
+      const { statusCode, msg } = result.data
+      if (statusCode === 200) {
+        return result
+      } else {
+        ElMessage.error(msg)
+        return Promise.reject(new Error(msg))
+      }
     },
   },
 })

@@ -4,6 +4,7 @@ import { TOKEN } from '/@/constant'
 import { store } from '/@/store'
 import { login } from '/@/api/mock'
 import router from '/@/router'
+import { setTimeStamp } from '/@/utils/auth'
 
 interface GlobalState {
   token: string
@@ -28,9 +29,16 @@ export const useUserStore = defineStore({
         if (statusCode === 200) {
           console.log('result ===', result)
           this.token = data.userInfo.token
+          setTimeStamp()
           LocalCache.setItem(TOKEN, data.userInfo.token)
           router.push('/')
         }
+      })
+    },
+    userLogout() {
+      return new Promise(resolve => {
+        LocalCache.clear()
+        resolve('200')
       })
     },
   },
