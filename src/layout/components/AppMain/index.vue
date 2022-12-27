@@ -1,4 +1,6 @@
-<template>内容</template>
+<template>
+  <router-view></router-view>
+</template>
 
 <script setup lang="ts"></script>
 

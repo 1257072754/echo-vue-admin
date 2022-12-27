@@ -1,5 +1,6 @@
 <template>
   <div class="navbar">
+    <Hamburger />
     <div class="right-menu">
       <el-dropdown trigger="click">
         <div class="avatar-wrapper">
@@ -22,6 +23,7 @@
 import avatar from '/@/assets/image/avatar.png'
 import router from '/@/router'
 import { useUserStore } from '/@/store/modules/login'
+import Hamburger from '/@/components/hamburger/index.vue'
 
 const userStore = useUserStore()
 /**

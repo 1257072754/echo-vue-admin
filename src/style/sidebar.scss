@@ -52,8 +52,10 @@
       overflow: hidden;
     }
 
-    .svg-icon {
-      margin-right: 16px;
+    .svg-raw{
+      margin-right: 6px;
+      width: 20px;
+      height: 20px;
     }
 
     .sub-el-icon {
@@ -80,11 +82,11 @@
 
   .hideSidebar {
     .sidebar-container {
-      width: 54px !important;
+      width: $hideSideBarWidth !important;
     }
 
     .main-container {
-      margin-left: 54px;
+      margin-left: $hideSideBarWidth;
     }
 
     .submenu-title-noDropdown {
@@ -94,8 +96,9 @@
       .el-tooltip {
         padding: 0 !important;
 
-        .svg-icon {
+        .svg-raw {
           margin-left: 20px;
+
         }
 
         .sub-el-icon {
@@ -110,7 +113,7 @@
       & > .el-sub-menu__title {
         padding: 0 !important;
 
-        .svg-icon {
+        .svg-raw {
           margin-left: 20px;
         }
 
@@ -153,7 +156,7 @@
 
 .el-menu--vertical {
   & > .el-menu {
-    .svg-icon {
+    .svg-raw {
       margin-right: 16px;
     }
     .sub-el-icon {

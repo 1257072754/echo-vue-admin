@@ -1,19 +1,20 @@
 <template>
-  <div class="app-wrapper">
+  <div
+    class="app-wrapper"
+    :class="configStore.sidebarOpened ? 'openSidebar' : 'hideSidebar'"
+  >
     <!-- 左侧menu-->
     <Sidebar
       class="sidebar-container"
       :style="{ 'background-color': variablesCss }"
-      style="background-color: #1f2d3d"
     />
-    <el-button type="primary" @click="changeColor">buttonCont</el-button>
     <div class="main-container">
       <div class="fixed-header">
         <!-- 顶部navbar-->
         <Navbar />
       </div>
       <!-- 内容区-->
-      <AppMain />
+      <AppMain style="margin-top: 60px" />
     </div>
   </div>
 </template>
@@ -24,13 +25,11 @@ import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import { ref } from 'vue'
 import variables from '../style/variables.module.scss'
+import { useAppConfigStore } from '/@/store/modules/appConfig'
 
 const variablesCss = ref('')
+const configStore = useAppConfigStore()
 variablesCss.value = variables.menuBg
-console.log('variablesCss ===', variablesCss.value)
-const changeColor = () => {
-  variablesCss.value = '#fff220'
-}
 </script>
 
 <style scoped lang="scss">
@@ -50,5 +49,10 @@ const changeColor = () => {
   right: 0;
   z-index: 9;
   width: calc(100% - #{$sideBarWidth});
+  transition: width 0.28s;
+}
+
+.hideSidebar .fixed-header {
+  width: calc(100% - #{$hideSideBarWidth});
 }
 </style>
