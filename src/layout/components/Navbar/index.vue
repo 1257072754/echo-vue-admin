@@ -1,6 +1,7 @@
 <template>
   <div class="navbar">
     <Hamburger />
+    <Breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
       <el-dropdown trigger="click">
         <div class="avatar-wrapper">
@@ -24,6 +25,7 @@ import avatar from '/@/assets/image/avatar.png'
 import router from '/@/router'
 import { useUserStore } from '/@/store/modules/login'
 import Hamburger from '/@/components/hamburger/index.vue'
+import Breadcrumb from '/@/layout/components/Breadcrumb/index.vue'
 
 const userStore = useUserStore()
 /**
