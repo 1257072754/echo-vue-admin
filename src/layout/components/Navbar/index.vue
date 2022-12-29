@@ -3,6 +3,10 @@
     <Hamburger />
     <Breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
+      <LangSelect
+        :effect="dark"
+        class="right-menu-item hover-effect"
+      ></LangSelect>
       <el-dropdown trigger="click">
         <div class="avatar-wrapper">
           <el-avatar shape="square" :size="40" :src="avatar"></el-avatar>
@@ -26,6 +30,7 @@ import router from '/@/router'
 import { useUserStore } from '/@/store/modules/login'
 import Hamburger from '/@/components/hamburger/index.vue'
 import Breadcrumb from '/@/layout/components/Breadcrumb/index.vue'
+import LangSelect from '/@/components/langSelect/index.vue'
 
 const userStore = useUserStore()
 /**
@@ -67,6 +72,16 @@ const handleLogout = async () => {
     align-items: center;
     float: right;
     // padding-right: 16px;
+    :deep(.right-menu-item) {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      vertical-align: bottom;
+      color: #5a5e66;
+      font-size: 24px;
+      &.hover-effect {
+        cursor: pointer;
+      }
+    }
     :deep(.avatar-container) {
       cursor: pointer;
 

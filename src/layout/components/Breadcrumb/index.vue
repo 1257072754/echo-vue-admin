@@ -1,25 +1,30 @@
 <template>
   <el-breadcrumb class="breadcrumb" separator="/">
-    <el-breadcrumb-item
-      v-for="(item, index) in breadcrumbData"
-      :key="item.path"
-    >
-      <!--不可点击-->
-      <span v-if="index === breadcrumbData.length - 1" class="no-redirect">{{
-        item.meta.title
-      }}</span>
-      <!--可点击-->
-      <span v-else class="redirect" @click="handleJump">{{
-        item.meta.title
-      }}</span>
-    </el-breadcrumb-item>
+    <TransitionGroup name="breadcrumb">
+      <el-breadcrumb-item
+        v-for="(item, index) in breadcrumbData"
+        :key="item.path"
+      >
+        <!--不可点击-->
+        <span v-if="index === breadcrumbData.length - 1" class="no-redirect">{{
+          item.meta.title
+        }}</span>
+        <!--可点击-->
+        <span v-else class="redirect" @click="handleJump">{{
+          item.meta.title
+        }}</span>
+      </el-breadcrumb-item>
+    </TransitionGroup>
   </el-breadcrumb>
 </template>
 
 <script setup>
 import { watch, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { useStyleStore } from '/@/store/modules/style'
 
+const cssStore = useStyleStore()
+const linkHoverColor = ref(cssStore.cssVar.menuBg)
 const route = useRoute()
 const breadcrumbData = ref([])
 //生成数组数据
@@ -58,6 +63,10 @@ watch(
     color: #666;
     font-weight: 600;
     cursor: pointer;
+  }
+
+  :deep(.redirect:hover) {
+    color: v-bind(linkHoverColor);
   }
 }
 </style>
