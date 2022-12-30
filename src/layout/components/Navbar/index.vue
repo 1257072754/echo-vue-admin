@@ -3,10 +3,10 @@
     <Hamburger />
     <Breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
-      <LangSelect
-        :effect="dark"
-        class="right-menu-item hover-effect"
-      ></LangSelect>
+      <HeaderSearch class="right-menu-item hover-effect" />
+      <Screenfull class="right-menu-item hover-effect" />
+      <ThemeSelect class="right-menu-item hover-effect" />
+      <LangSelect :effect="dark" class="right-menu-item hover-effect" />
       <el-dropdown trigger="click">
         <div class="avatar-wrapper">
           <el-avatar shape="square" :size="40" :src="avatar"></el-avatar>
@@ -28,9 +28,12 @@
 import avatar from '/@/assets/image/avatar.png'
 import router from '/@/router'
 import { useUserStore } from '/@/store/modules/login'
-import Hamburger from '/@/components/hamburger/index.vue'
+import Hamburger from '/@/components/Hamburger/index.vue'
 import Breadcrumb from '/@/layout/components/Breadcrumb/index.vue'
-import LangSelect from '/@/components/langSelect/index.vue'
+import LangSelect from '/@/components/LangSelect/index.vue'
+import ThemeSelect from '/@/components/ThemeSelect/index.vue'
+import Screenfull from '/@/components/Screenfull/index.vue'
+import HeaderSearch from '/@/components/HeaderSearch/index.vue'
 
 const userStore = useUserStore()
 /**
@@ -78,10 +81,12 @@ const handleLogout = async () => {
       vertical-align: bottom;
       color: #5a5e66;
       font-size: 24px;
+
       &.hover-effect {
         cursor: pointer;
       }
     }
+
     :deep(.avatar-container) {
       cursor: pointer;
 

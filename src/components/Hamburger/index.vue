@@ -13,6 +13,7 @@ import { useAppConfigStore } from '../../store/modules/appConfig'
 import { computed } from 'vue'
 
 const configStore = useAppConfigStore()
+
 const toggleClick = () => {
   configStore.triggerSidebarOpened()
 }

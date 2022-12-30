@@ -30,6 +30,7 @@ module.exports = defineConfig({
   ],
   // https://cn.eslint.org/docs/rules/
   rules: {
+    'vue/no-v-html': 'off',
     // 禁止使用 var
     'no-var': 'error',
     semi: 'off',

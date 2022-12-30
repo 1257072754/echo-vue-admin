@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia'
-import variables from '/@/style/variables.module.scss'
+import { generateColors } from '/@/utils/theme'
+import { LocalCache } from '/@/utils/cache'
+import { DEFAULT_COLOR } from '/@/constant'
+import { useAppConfigStore } from '/@/store/modules/appConfig'
 
 /**
  * 主题颜色更换
@@ -7,7 +10,14 @@ import variables from '/@/style/variables.module.scss'
 export const useStyleStore = defineStore({
   id: 'style',
   state: () => {
-    return { cssVar: variables }
+    return {
+      cssVar: {
+        ...useAppConfigStore().variablesTheme,
+        ...generateColors(
+          LocalCache.getItem('appConfig')?.mainTheme || DEFAULT_COLOR,
+        ),
+      },
+    }
   },
   getters: {},
 })

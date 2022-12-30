@@ -7,7 +7,8 @@
       :model="userFrom"
     >
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{ $t('msg.login.title') }}</h3>
+        <LangSelect class="lang-select" effect="light"></LangSelect>
       </div>
       <el-form-item prop="username">
         <span class="svg-container">
@@ -37,8 +38,9 @@
         style="width: 100%; margin-bottom: 30px"
         type="primary"
         @click="handleLogin"
-        >登录
+        >{{ $t('msg.login.loginBtn') }}
       </el-button>
+      <div class="tips" v-html="$t('msg.login.desc')"></div>
     </el-form>
   </div>
 </template>
@@ -47,6 +49,7 @@ import { Hide, View } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
 import { ILogin } from '/@/api/types/mock'
 import { useUserStore } from '/@/store/modules/login'
+import LangSelect from '/@/components/LangSelect/index.vue'
 
 const isShowPas = ref(true)
 const userFromRef = ref()
@@ -150,6 +153,22 @@ $cursor: #fff;
     color: $dark_gray;
     cursor: pointer;
     user-select: none;
+  }
+
+  .tips {
+    font-size: 16px;
+    color: white;
+    line-height: 20px;
+  }
+  .lang-select {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    background-color: #fff;
+    font-size: 22px;
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
   }
 }
 </style>

@@ -8,11 +8,12 @@
     :name="icon"
   ></SvgIcon>
   <!--文本-->
-  <span>{{ title }}</span>
+  <span>{{ generateTitle(title) }}</span>
 </template>
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import { generateTitle } from '/@/utils/i18n'
 
 defineProps({
   title: {

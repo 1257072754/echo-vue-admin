@@ -4,24 +4,33 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    ' langSelect': typeof import('../components/langSelect/index.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
+    ElDialog: typeof import('element-plus/es')['ElDialog']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
     ElImage: typeof import('element-plus/es')['ElImage']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    ElOption: typeof import('element-plus/es')['ElOption']
     ElPagination: typeof import('element-plus/es')['ElPagination']
+    ElRow: typeof import('element-plus/es')['ElRow']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
+    ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
-    Hamburger: typeof import('./../components/hamburger/index.vue')['default']
-    LangSelect: typeof import('./../components/langSelect/index.vue')['default']
+    Hamburger: typeof import('./../components/Hamburger/index.vue')['default']
+    HeaderSearch: typeof import('./../components/HeaderSearch/index.vue')['default']
+    LangSelect: typeof import('./../components/LangSelect/index.vue')['default']
+    Screenfull: typeof import('./../components/Screenfull/index.vue')['default']
+    SelectColor: typeof import('./../components/ThemeSelect/components/selectColor.vue')['default']
     Src: typeof import('./../components/SvgIcon/src/index.vue')['default']
+    ThemeSelect: typeof import('./../components/ThemeSelect/index.vue')['default']
   }
 }
 

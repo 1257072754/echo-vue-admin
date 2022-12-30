@@ -7,11 +7,11 @@
       >
         <!--不可点击-->
         <span v-if="index === breadcrumbData.length - 1" class="no-redirect">{{
-          item.meta.title
+          generateTitle(item.meta.title)
         }}</span>
         <!--可点击-->
         <span v-else class="redirect" @click="handleJump">{{
-          item.meta.title
+          generateTitle(item.meta.title)
         }}</span>
       </el-breadcrumb-item>
     </TransitionGroup>
@@ -22,6 +22,7 @@
 import { watch, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStyleStore } from '/@/store/modules/style'
+import { generateTitle } from '/@/utils/i18n'
 
 const cssStore = useStyleStore()
 const linkHoverColor = ref(cssStore.cssVar.menuBg)

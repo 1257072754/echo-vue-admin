@@ -6,7 +6,7 @@
     <!-- 左侧menu-->
     <Sidebar
       class="sidebar-container"
-      :style="{ 'background-color': variablesCss }"
+      :style="{ 'background-color': styleStore.cssVar.menuBg }"
     />
     <div class="main-container">
       <div class="fixed-header">
@@ -23,13 +23,24 @@
 import AppMain from './components/AppMain'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
-import { ref } from 'vue'
-import variables from '../style/variables.module.scss'
+import { ref, watch } from 'vue'
 import { useAppConfigStore } from '/@/store/modules/appConfig'
+import { useStyleStore } from '/@/store/modules/style'
 
 const variablesCss = ref('')
 const configStore = useAppConfigStore()
-variablesCss.value = variables.menuBg
+const styleStore = useStyleStore()
+variablesCss.value = styleStore.cssVar.menuBg
+
+watch(
+  () => styleStore.cssVar,
+  () => {
+    console.log(' styleStore.cssVar===', styleStore.cssVar)
+  },
+  {
+    immediate: true,
+  },
+)
 </script>
 
 <style scoped lang="scss">

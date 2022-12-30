@@ -12,15 +12,19 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
+    <el-row class="mb-4">
+      <el-button>Default</el-button>
+      <el-button type="primary">Primary</el-button>
+      <el-button type="success">Success</el-button>
+      <el-button type="info">Info</el-button>
+      <el-button type="warning">Warning</el-button>
+      <el-button type="danger">Danger</el-button>
+    </el-row>
   </div>
 </template>
 
 <script setup>
 import {} from 'vue'
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n()
-console.log('t ===', t('msg.profile.feature'))
 </script>
 
 <style lang="scss" scoped></style>
