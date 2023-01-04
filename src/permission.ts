@@ -4,6 +4,7 @@ import { TOKEN } from '/@/constant'
 
 const witheList = ['/login']
 // 路由前置守卫
+
 router.beforeEach((to, from, next) => {
   // 用户已登录
   if (LocalCache.getItem(TOKEN)) {

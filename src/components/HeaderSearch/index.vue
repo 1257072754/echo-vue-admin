@@ -38,13 +38,13 @@ const router = useRouter()
 const searchPool = computed(() => {
   const filterRouters = filterRoutes(router.getRoutes())
   return generateRoutes(filterRouters)
-}) as any
+})
 /**
  * 搜索库相关
  */
 let fuse = '' as any
 const initFuse = () => {
-  fuse = new Fuse(searchPool, {
+  fuse = new Fuse(searchPool.value, {
     // 是否按优先级进行排序
     shouldSort: true,
     // 匹配长度超过这个值的才会被认为是匹配的
@@ -121,7 +121,7 @@ const onSelectChange = (val: any) => {
 .header-search {
   font-size: 0 !important;
 
-  .search-icon {
+  .svg-raw {
     cursor: pointer;
     font-size: 18px;
     vertical-align: middle;

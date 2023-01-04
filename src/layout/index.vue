@@ -12,9 +12,10 @@
       <div class="fixed-header">
         <!-- 顶部navbar-->
         <Navbar />
+        <!-- TagsView-->
       </div>
       <!-- 内容区-->
-      <AppMain style="margin-top: 60px" />
+      <AppMain />
     </div>
   </div>
 </template>
@@ -23,7 +24,7 @@
 import AppMain from './components/AppMain'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import { useAppConfigStore } from '/@/store/modules/appConfig'
 import { useStyleStore } from '/@/store/modules/style'
 
@@ -31,16 +32,6 @@ const variablesCss = ref('')
 const configStore = useAppConfigStore()
 const styleStore = useStyleStore()
 variablesCss.value = styleStore.cssVar.menuBg
-
-watch(
-  () => styleStore.cssVar,
-  () => {
-    console.log(' styleStore.cssVar===', styleStore.cssVar)
-  },
-  {
-    immediate: true,
-  },
-)
 </script>
 
 <style scoped lang="scss">

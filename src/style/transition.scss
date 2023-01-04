@@ -12,3 +12,17 @@
 .breadcrumb-leave-active {
   position: absolute;
 }
+
+//路由切换动画
+.fade-transition-enter-active,
+.fade-transition-leave-active {
+  transition: all 0.5s;
+}
+.fade-transition-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.fade-transition-leave-to{
+  opacity: 0;
+  transform: translateX(30px);
+}

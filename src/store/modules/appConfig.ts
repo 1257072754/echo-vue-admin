@@ -15,6 +15,7 @@ export const useAppConfigStore = defineStore({
         ? LocalCache.getItem('appConfig')?.language
         : 'zh',
       mainTheme: LocalCache.getItem('appConfig')?.mainTheme || DEFAULT_COLOR,
+      tagsViewList: LocalCache.getItem('appConfig')?.tagsViewList || [],
       variablesTheme: variables,
     }
   },
@@ -28,6 +29,16 @@ export const useAppConfigStore = defineStore({
     setMainTheme(theme: string) {
       this.mainTheme = theme
       this.variablesTheme.menuBg = theme
+    },
+    addTagsView(tag: any) {
+      // console.log('tag ===', tag)
+      // console.log('this.tagsViewList ===', this.tagsViewList)
+      // const find = this.tagsViewList.find(item => {
+      //   debugger
+      //   return item.path === tag.path
+      // })
+      //处理重复
+      this.tagsViewList.push(tag)
     },
   },
   persist: true,

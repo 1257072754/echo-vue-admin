@@ -10,7 +10,7 @@
           generateTitle(item.meta.title)
         }}</span>
         <!--可点击-->
-        <span v-else class="redirect" @click="handleJump">{{
+        <span v-else class="redirect" @click="handleJump(item.path)">{{
           generateTitle(item.meta.title)
         }}</span>
       </el-breadcrumb-item>
@@ -27,6 +27,7 @@ import { generateTitle } from '/@/utils/i18n'
 const cssStore = useStyleStore()
 const linkHoverColor = ref(cssStore.cssVar.menuBg)
 const route = useRoute()
+const router = useRouter()
 const breadcrumbData = ref([])
 //生成数组数据
 const getBreadcrumbData = () => {
@@ -34,10 +35,9 @@ const getBreadcrumbData = () => {
   breadcrumbData.value = route.matched.filter(
     item => item.meta && item.meta.title,
   )
-  console.log(' breadcrumbData.value ===', breadcrumbData.value)
 }
-const handleJump = () => {
-  console.log(' breadcrumbData.value ===', breadcrumbData.value)
+const handleJump = path => {
+  router.push(path)
 }
 watch(
   route,

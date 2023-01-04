@@ -71,6 +71,7 @@ const handleLogout = async () => {
   }
 
   .right-menu {
+    height: 50px;
     display: flex;
     align-items: center;
     float: right;
