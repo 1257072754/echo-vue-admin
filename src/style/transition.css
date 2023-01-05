@@ -1,0 +1,31 @@
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+  transition: all 0.5s;
+}
+
+.breadcrumb-enter-from,
+.breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.breadcrumb-leave-active {
+  position: absolute;
+}
+
+.fade-transition-enter-active,
+.fade-transition-leave-active {
+  transition: all 0.5s;
+}
+
+.fade-transition-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-transition-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/*# sourceMappingURL=transition.css.map */

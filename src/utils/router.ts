@@ -77,6 +77,7 @@ const isNull = (data: any) => {
   if (JSON.stringify(data) === '{}') return true
   if (JSON.stringify(data) === '[]') return true
 }
+
 //根据routes(childrenRoutes)数据，返回对应的menu规则数据
 export function generateMenus(routes: any, basePath = '') {
   const result = []

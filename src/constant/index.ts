@@ -8,6 +8,6 @@ export const LANG = 'language'
 // 主题色保存的 key
 export const MAIN_COLOR = 'mainColor'
 // 默认色值
-export const DEFAULT_COLOR = '#409eff'
+export const DEFAULT_COLOR = '#0d243f'
 // tags
 export const TAGS_VIEW = 'tagsView'
