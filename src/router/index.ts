@@ -7,7 +7,7 @@ import PermissionListRouter from './modules/PermissionList'
 import RoleListRouter from './modules/RoleList'
 import UserManageRouter from './modules/UserManage'
 //私有路由表
-const privateRoutes: RouteRecordRaw[] = [
+export const privateRoutes: RouteRecordRaw[] = [
   RoleListRouter,
   UserManageRouter,
   PermissionListRouter,
@@ -15,7 +15,7 @@ const privateRoutes: RouteRecordRaw[] = [
   ArticleRouter,
 ]
 // 公开路由表
-const publicRoutes: RouteRecordRaw[] = [
+export const publicRoutes: RouteRecordRaw[] = [
   {
     name: 'login',
     path: '/login',
@@ -53,7 +53,7 @@ const publicRoutes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-  routes: [...publicRoutes, ...privateRoutes],
+  routes: publicRoutes,
   history: createWebHistory(),
 })
 

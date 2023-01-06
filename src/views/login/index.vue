@@ -2,9 +2,9 @@
   <div class="login-container">
     <el-form
       ref="userFromRef"
-      class="login-form"
-      :rules="rules"
       :model="userFrom"
+      :rules="rules"
+      class="login-form"
     >
       <div class="title-container">
         <h3 class="title">{{ $t('msg.login.title') }}</h3>
@@ -12,7 +12,7 @@
       </div>
       <el-form-item prop="username">
         <span class="svg-container">
-          <SvgIcon style="width: 20px; height: 20px" name="user"></SvgIcon>
+          <SvgIcon name="user" style="width: 20px; height: 20px"></SvgIcon>
         </span>
         <el-input
           v-model="userFrom.username"
@@ -21,7 +21,7 @@
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
-          <SvgIcon style="width: 20px; height: 20px" name="user"></SvgIcon>
+          <SvgIcon name="user" style="width: 20px; height: 20px"></SvgIcon>
         </span>
         <el-input
           v-model="userFrom.password"
@@ -44,7 +44,7 @@
     </el-form>
   </div>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import { Hide, View } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
 import { ILogin } from '/@/api/types/mock'
@@ -62,11 +62,11 @@ const userFrom = reactive<ILogin>({
 const rules = reactive({
   username: [
     { required: true, message: 'Please input username', trigger: 'blur' },
-    { min: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
+    { min: 2, message: 'Length should be 3 to 5', trigger: 'blur' },
   ],
   password: [
     { required: true, message: 'Please input password', trigger: 'blur' },
-    { min: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
+    { min: 2, message: 'Length should be 3 to 5', trigger: 'blur' },
   ],
 })
 //登录
@@ -81,7 +81,7 @@ const setShowPws = () => {
   isShowPas.value = !isShowPas.value
 }
 </script>
-<style scoped lang="scss">
+<style lang="scss" scoped>
 $bg: #2d3a4b;
 $dark_gray: #889aa4;
 $light_gray: #eee;
@@ -160,6 +160,7 @@ $cursor: #fff;
     color: white;
     line-height: 20px;
   }
+
   .lang-select {
     position: absolute;
     top: 10px;
