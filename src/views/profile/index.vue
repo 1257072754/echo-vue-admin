@@ -3,12 +3,12 @@
     {{ $t('msg.profile.feature') }}
     <el-pagination
       v-model:current-page="currentPage1"
+      :background="background"
+      :disabled="disabled"
       :page-size="100"
       :small="small"
-      :disabled="disabled"
-      :background="background"
-      layout="total, prev, pager, next"
       :total="1000"
+      layout="total, prev, pager, next"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
@@ -23,8 +23,6 @@
   </div>
 </template>
 
-<script setup>
-import {} from 'vue'
-</script>
+<script setup></script>
 
 <style lang="scss" scoped></style>

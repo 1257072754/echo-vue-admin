@@ -1,13 +1,14 @@
 import { defineStore } from 'pinia'
 import { LocalCache } from '/@/utils/cache'
-import { PERMISSION, TOKEN } from '/@/constant'
+import { PERMISSION, TOKEN, USERINFO } from '/@/constant'
 import { login } from '/@/api/mock'
-import router from '/@/router'
+import router, { resetRoutes } from '/@/router'
 import { setTimeStamp } from '/@/utils/auth'
 
 interface GlobalState {
   token: string
   permission: []
+  userInfo: object
 }
 
 export const useUserStore = defineStore({
@@ -16,6 +17,7 @@ export const useUserStore = defineStore({
     return {
       token: LocalCache.getItem(TOKEN) || '',
       permission: LocalCache.getItem(PERMISSION) || [],
+      userInfo: LocalCache.getItem(USERINFO) || {},
     }
   },
   getters: {
@@ -23,6 +25,9 @@ export const useUserStore = defineStore({
       return LocalCache.getItem(TOKEN)
     },
     getPermission: () => {
+      return LocalCache.getItem(PERMISSION)
+    },
+    getUserInfo: () => {
       return LocalCache.getItem(PERMISSION)
     },
   },
@@ -37,6 +42,7 @@ export const useUserStore = defineStore({
           setTimeStamp()
           LocalCache.setItem(TOKEN, data.userInfo.token)
           LocalCache.setItem(PERMISSION, data.userInfo.permissions)
+          LocalCache.setItem(USERINFO, data.userInfo.info)
           router.push('/')
         }
       })
@@ -44,6 +50,7 @@ export const useUserStore = defineStore({
     userLogout() {
       return new Promise(resolve => {
         LocalCache.clear()
+        resetRoutes()
         resolve('200')
       })
     },

@@ -1,22 +1,29 @@
 import router from '/@/router'
 import { LocalCache } from '/@/utils/cache'
-import { PERMISSION, TOKEN } from '/@/constant'
+import { TOKEN } from '/@/constant'
 import { useUserStore } from '/@/store/modules/login'
 import { usePermissionStore } from '/@/store/modules/permission'
-
+import { useFirstStore } from '/@/store/modules/first'
+// 白名单
 const witheList = ['/login']
-// 路由前置守卫
+/**
+ * 路由前置守卫
+ * @param {*} to 要到哪里去
+ * @param {*} from 要从哪里来
+ * @param {*} next 是否要去
+ */
 
 router.beforeEach(async (to, from, next) => {
-  // 用户已登录
+  // 用户已登录，存在 token ，进入主页
   if (LocalCache.getItem(TOKEN)) {
     if (to.path === '/login') {
-      console.log('111 ===', 11)
+      //已经登录但是想进入登录页，重定向到根目录
       next('/')
     } else {
-      console.log('444 ===', 444)
+      const firstStore = useFirstStore()
       //判断用户资料是否存在，如果不存在，则获取用户信息
-      if (LocalCache.getItem(PERMISSION)) {
+      if (!firstStore.getFlag) {
+        firstStore.setFlag(true)
         const userStore = useUserStore()
         const permissionStore = usePermissionStore()
         const permission = await userStore.getPermission
@@ -24,28 +31,24 @@ router.beforeEach(async (to, from, next) => {
         const filterRoutes = await permissionStore.filterRoutes(
           permission.menus,
         )
-        //console.log('filterRoutes ===', filterRoutes)
         //循环添加对应的动态路由
         filterRoutes.forEach((item: any) => {
           router.addRoute(item)
-          // console.log('item ===', item)
         })
+        console.log('动态路由添加完成 ===', router.getRoutes())
         //添加完动态路由后，需要进行一次主动跳转
-        // console.log('getRoutes ===', router.getRoutes())
         return next(to.path)
-      } else {
-        console.log(' 1111===')
-        next()
       }
+      next()
     }
   }
   // 用户未登录
   else {
+    // 没有token的情况下，可以进入白名单
     if (witheList.indexOf(to.path) > -1) {
-      console.log('222 ===', 222)
       next()
     } else {
-      console.log('333 ===', 333)
+      //跳转路径不在白名单里，跳转到登录页
       next('/login')
     }
   }
