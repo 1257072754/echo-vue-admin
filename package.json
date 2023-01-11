@@ -76,6 +76,7 @@
     "unplugin-icons": "^0.14.14",
     "unplugin-vue-components": "^0.17.21",
     "vite": "^2.8.0",
+    "vite-plugin-compression": "^0.5.1",
     "vite-plugin-mock": "^2.9.6",
     "vite-svg-loader": "^3.6.0",
     "vue-tsc": "^0.29.8"

@@ -8,6 +8,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { viteMockServe } from 'vite-plugin-mock'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import viteCompression from 'vite-plugin-compression'
 import svgLoader from 'vite-svg-loader'
 
 export default defineConfig(({ mode }: ConfigEnv) => {
@@ -38,6 +39,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         // 默认开启响应性语法糖
         reactivityTransform: true,
       }),
+      viteCompression(),
       AutoImport({
         resolvers: [
           ElementPlusResolver(),
