@@ -26,6 +26,7 @@ const request = new Request({
   interceptors: {
     // 请求拦截器
     requestInterceptors: (config: any) => {
+      console.log('config ===', config)
       if (LocalCache.getItem(TOKEN) && isCheckTimeout()) {
         //token过期，退出
         LocalCache.removeItem(TOKEN)
@@ -38,6 +39,7 @@ const request = new Request({
     },
     // 响应拦截器
     responseInterceptors: (result: any) => {
+      console.log('result ===', result)
       const { statusCode, msg } = result.data
       if (statusCode === 200) {
         return result

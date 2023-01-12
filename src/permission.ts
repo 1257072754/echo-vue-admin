@@ -36,9 +36,11 @@ router.beforeEach(async (to, from, next) => {
           router.addRoute(item)
         })
         console.log('动态路由添加完成 ===', router.getRoutes())
+        console.log('to.path1 ===', to.path)
         //添加完动态路由后，需要进行一次主动跳转
         return next(to.path)
       }
+      console.log('to.path2 ===', to.path)
       next()
     }
   }
