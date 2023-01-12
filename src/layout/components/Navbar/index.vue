@@ -9,7 +9,7 @@
       <LangSelect :effect="dark" class="right-menu-item hover-effect" />
       <el-dropdown trigger="click">
         <div class="avatar-wrapper">
-          <el-avatar shape="square" :size="40" :src="avatar"></el-avatar>
+          <el-avatar :size="40" :src="avatar" shape="square"></el-avatar>
           <i class="el-icon-s-tools"></i>
         </div>
         <template #dropdown>
@@ -24,7 +24,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import avatar from '/@/assets/image/avatar.png'
 import router from '/@/router'
 import { useUserStore } from '/@/store/modules/login'
@@ -34,6 +34,7 @@ import LangSelect from '/@/components/LangSelect/index.vue'
 import ThemeSelect from '/@/components/ThemeSelect/index.vue'
 import Screenfull from '/@/components/Screenfull/index.vue'
 import HeaderSearch from '/@/components/HeaderSearch/index.vue'
+import { useFirstStore } from '/@/store/modules/first'
 
 const userStore = useUserStore()
 /**
@@ -42,6 +43,7 @@ const userStore = useUserStore()
 const handleLogout = async () => {
   await userStore.userLogout()
   await router.push('/login')
+  await useFirstStore().setFlag(false)
 }
 </script>
 

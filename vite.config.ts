@@ -10,6 +10,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import viteCompression from 'vite-plugin-compression'
 import svgLoader from 'vite-svg-loader'
+import legacyPlugin from '@vitejs/plugin-legacy'
 
 export default defineConfig(({ mode }: ConfigEnv) => {
   const env = loadEnv(mode, process.cwd())
@@ -38,6 +39,10 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       vue({
         // 默认开启响应性语法糖
         reactivityTransform: true,
+      }),
+      legacyPlugin({
+        targets: ['chrome 52'], // 需要兼容的目标列表，可以设置多个
+        additionalLegacyPolyfills: ['regenerator-runtime/runtime'], // 面向IE11时需要此插件
       }),
       viteCompression(),
       AutoImport({

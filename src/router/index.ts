@@ -1,7 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
 import layout from '/@/layout/index.vue'
-import ArticleCreaterRouter from './modules/ArticleCreate'
+import ArticleCreateRouter from './modules/ArticleCreate'
 import ArticleRouter from './modules/Article'
 import PermissionListRouter from './modules/PermissionList'
 import RoleListRouter from './modules/RoleList'
@@ -14,7 +14,7 @@ export const privateRoutes: RouteRecordRaw[] = [
   RoleListRouter,
   UserManageRouter,
   PermissionListRouter,
-  ArticleCreaterRouter,
+  ArticleCreateRouter,
   ArticleRouter,
 ]
 // 公开路由表
