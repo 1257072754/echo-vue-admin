@@ -3,7 +3,7 @@
     <router-view />
   </el-config-provider>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useAppConfigStore } from '/@/store/modules/appConfig'
@@ -21,6 +21,7 @@ const changeLanguage = () => {
 const color = ref(configStore.mainTheme || '#304156')
 
 const init = async () => {
+  console.log('appInit ===')
   const newStyle = await generateNewStyle(color.value)
   writeNewStyle(newStyle)
 }
