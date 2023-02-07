@@ -1,6 +1,6 @@
-# vue3 template
+# echo-vue-admin
 
-一个 Vue3 + TS + Vite + Element-Plus 开箱即用的企业级开发模板。
+Vue3 + TS + Vite + Element-Plus admin后台管理系统框架。
 
 ## 🎉有点用的小特性
 
