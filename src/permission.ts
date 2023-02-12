@@ -21,7 +21,7 @@ router.beforeEach(async (to, from, next) => {
       next('/')
     } else {
       const firstStore = useFirstStore()
-      //判断用户资料是否存在，如果不存在，则获取用户信息
+      //判断用户是否首次登录，如果不存在，则获取用户信息
       if (!firstStore.getFlag) {
         firstStore.setFlag(true)
         const userStore = useUserStore()
