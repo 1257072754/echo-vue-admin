@@ -12,7 +12,9 @@
               />
             </div>
             <div>
-              <div class="text-xl">你好，admin ，祝你开心每一天！</div>
+              <div class="text-xl">
+                你好，{{ user.name }} ，祝你开心每一天！
+              </div>
               <div class="text-sm text-gray-400 pt-2">
                 饿了么－某某某某某某－某某某某某－某某某某某－某某某
               </div>
@@ -47,7 +49,7 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import Chart from '/@/views/Dashboard/Workplace/_Components/Chart.vue'
 import List from '/@/views/Dashboard/Workplace/_Components/List.vue'
 </script>

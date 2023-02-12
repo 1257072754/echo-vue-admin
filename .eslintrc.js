@@ -30,6 +30,7 @@ module.exports = defineConfig({
   ],
   // https://cn.eslint.org/docs/rules/
   rules: {
+    //关闭组件命名规则
     'vue/no-v-html': 'off',
     // 禁止使用 var
     'no-var': 'error',
@@ -71,7 +72,7 @@ module.exports = defineConfig({
     'vue/multi-word-component-names': [
       'error',
       {
-        ignores: ['index', '404', '401'], //需要忽略的组件名
+        ignores: ['index', '404', '401', 'Index', 'Chart', 'List'], //需要忽略的组件名
       },
     ],
     'vue/html-indent': 'off',

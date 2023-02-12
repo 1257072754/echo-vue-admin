@@ -4,7 +4,7 @@ import { setupStore } from '/@/store'
 import App from './App.vue'
 // 引入 vue-router
 import router from './router'
-
+import direct from '/@/directive/index'
 // 初始化CSS
 import './style/index.scss'
 import 'animate.css'
@@ -21,6 +21,7 @@ import i18n from '/@/i18n/index'
 
 const app = createApp(App)
 setupStore(app)
+direct(app)
 app
   .use(router)
   .use(svgIcon)
